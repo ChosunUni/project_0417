@@ -23,3 +23,5 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+# test commit !
+# tlqkf
