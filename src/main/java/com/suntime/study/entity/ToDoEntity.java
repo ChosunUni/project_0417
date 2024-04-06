@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Table(name = "todo_tables")
 public class ToDoEntity {
 
     @Id
