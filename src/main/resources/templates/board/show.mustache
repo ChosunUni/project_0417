@@ -17,5 +17,7 @@
     {{/board}}
     </tbody>
 </table>
-<a href="/board">Go to Board List</a>
+<a href="/board/{{board.id}}/edit" class="btn btn-primary">수정</a>
+<a href="/board/{{board.id}}/delete" class="btn btn-danger">삭제</a>
+<a href="/board">게시글 목록</a>
 {{>layouts/footer}}

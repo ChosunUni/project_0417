@@ -46,6 +46,9 @@ public class MemberDTO {
     @Column(nullable = false, columnDefinition = "int(1) default 0")
     private int memberEmailCheck;
 
+    @Column(nullable = false)
+    private String verificationToken; // 추가: 회원 인증에 사용되는 토큰 필드
+
     public static MemberDTO toMemberDTO(MemberEntity memberEntity){
         MemberDTO memberDTO = new MemberDTO();
         memberDTO.setIdx((int) memberEntity.getIdx());
@@ -54,6 +57,7 @@ public class MemberDTO {
         memberDTO.setMemberName(memberEntity.getMemberName());
         memberDTO.setAuthority(memberEntity.getAuthority());
         memberDTO.setMemberEmailCheck(memberEntity.getMemberEmailCheck());
+        memberDTO.setVerificationToken(memberEntity.getVerificationToken());
         return memberDTO;
     }
 }

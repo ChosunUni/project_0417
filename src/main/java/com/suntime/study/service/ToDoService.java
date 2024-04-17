@@ -16,10 +16,35 @@ public class ToDoService {
         return this.toDoRepository.findAll();
     }
 
-    public void create(String content){
+    public void create(String content) {
         ToDoEntity toDoEntity = new ToDoEntity();
         toDoEntity.setContent(content);
-        toDoEntity.setCompleted(false);
+        toDoEntity.setCompleted(0); // completed 필드를 0으로 설정
         this.toDoRepository.save(toDoEntity);
+    }
+
+    public void delete(Integer idx){
+        ToDoEntity toDoEntity = toDoRepository.findById(idx)
+                .orElseThrow(()->new IllegalArgumentException("해당 아이템이 없습니다. idx=" + idx));
+        this.toDoRepository.delete(toDoEntity);
+    }
+
+    public void update(Integer idx, String content){
+        ToDoEntity toDoEntity = toDoRepository.findById(idx)
+                .orElseThrow(()->new IllegalArgumentException("해당 아이템이 없습니다. idx=" + idx));
+        toDoEntity.setContent(content);
+        this.toDoRepository.save(toDoEntity);
+    }
+
+    public void changeStatus(Integer idx, Integer newStatus) {
+        ToDoEntity toDoEntity = toDoRepository.findById(idx)
+                .orElseThrow(() -> new IllegalArgumentException("해당 아이템이 없습니다. idx=" + idx));
+        toDoEntity.setCompleted(newStatus);
+        this.toDoRepository.save(toDoEntity);
+    }
+
+    public ToDoEntity findById(Integer idx) {
+        return toDoRepository.findById(idx)
+                .orElse(null);
     }
 }

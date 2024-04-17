@@ -12,9 +12,21 @@ spring:
     url: jdbc:mariadb://127.0.0.1:3306/db_study
     #    mysql에 생성한 사용자 계정 정보를 써야 합니다.
     username: root
-    password: 1234
+    password: 12345678
   thymeleaf:
     cache: true
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: dsejong93@gmail.com
+    password: dgncdcrkqllptztx
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
   # spring data jpa 설정
   # spring data jpa 설정

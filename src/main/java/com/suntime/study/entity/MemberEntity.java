@@ -12,8 +12,8 @@ import lombok.Setter;
 @Getter
 @Table(name = "member_table")
 public class MemberEntity {
-    @Id // pk 지정
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto_increment
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idx;
 
     @Column(unique = true, nullable = false, length = 30)
@@ -28,18 +28,23 @@ public class MemberEntity {
     @Column(nullable = false, columnDefinition = "int(1) default 0")
     private int authority = 0;
 
-    @NotNull
     @Column(nullable = false, columnDefinition = "int(1) default 0")
     private int memberEmailCheck = 0;
 
-    public static MemberEntity toMemberEntity(MemberDTO memberDTO){
-        MemberEntity memberEntity = new MemberEntity();
-        memberEntity.setMemberEmail(memberDTO.getMemberEmail());
-        memberEntity.setMemberPW(memberDTO.getMemberPW());
-        memberEntity.setMemberName(memberDTO.getMemberName());
-        memberEntity.setAuthority(memberDTO.getAuthority());
-        memberEntity.setMemberEmailCheck(memberDTO.getMemberEmailCheck());
+    @Column(nullable = false)
+    private String verificationToken;
 
-        return memberEntity;
+    // 생성자 추가
+    public MemberEntity(String memberEmail, String memberPW, String memberName, String verificationToken) {
+        this.memberEmail = memberEmail;
+        this.memberPW = memberPW;
+        this.memberName = memberName;
+        this.verificationToken = verificationToken;
     }
+
+    // 기본 생성자
+    public MemberEntity() {
+    }
+
+    // toMemberEntity 메서드는 필요하지 않음
 }

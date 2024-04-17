@@ -4,21 +4,57 @@ import com.suntime.study.dto.MemberDTO;
 import com.suntime.study.entity.MemberEntity;
 import com.suntime.study.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.mail.*;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
 
+    @Autowired
+    private EmailService emailService;
+
+    private String generateVerificationToken() {
+        return UUID.randomUUID().toString();
+    }
+
     public void save(MemberDTO memberDTO) {
-        // 1. dto -> entity 변환
-        // 2. repository의 save 메서드 호출
-        MemberEntity memberEntity = MemberEntity.toMemberEntity(memberDTO);
+        String verificationToken = generateVerificationToken();
+
+        // DTO를 Entity로 변환
+//
+//        MemberEntity memberEntity = new MemberEntity();
+//        memberEntity.setMemberEmail(memberDTO.getMemberEmail());
+//        memberEntity.setMemberPW(memberDTO.getMemberPW());
+//        memberEntity.setMemberName(memberDTO.getMemberName());
+
+        MemberEntity memberEntity = new MemberEntity(
+                memberDTO.getMemberEmail(),
+                memberDTO.getMemberPW(),
+                memberDTO.getMemberName(),
+                verificationToken
+        );
+
+        // Repository의 save 메서드 호출
         memberRepository.save(memberEntity);
-        // repository의 save메서드 호출 (조건. entity객체를 넘겨줘야 함)
+
+        // 이메일 인증을 위해 인증 이메일 보내기
+        emailService.sendVerificationEmail(memberDTO.getMemberEmail(), verificationToken);
+    }
+
+    public boolean verifyEmail(String memberEmail, String token){
+        MemberEntity member = memberRepository.findByMemberEmail(memberEmail).orElse(null);
+        if(member != null && member.getVerificationToken().equals(token)){
+            member.setMemberEmailCheck(1);
+            memberRepository.save(member);
+            return true;
+        }
+        return false;
     }
 
     public MemberDTO login(MemberDTO memberDTO) {

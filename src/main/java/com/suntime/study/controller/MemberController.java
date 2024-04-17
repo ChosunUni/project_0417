@@ -2,12 +2,20 @@ package com.suntime.study.controller;
 
 import com.suntime.study.dto.MemberDTO;
 import com.suntime.study.service.MemberService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Pattern;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.Errors;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.Map;
 
 @Controller
 public class MemberController {
@@ -33,20 +41,23 @@ public class MemberController {
         return "index";
     }
 
-    @GetMapping("/index1")
-    public String loginForm() {
-        return "index";
-    }
-
     @PostMapping("/index")
-    public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
+    public String login(@ModelAttribute MemberDTO memberDTO, HttpServletRequest request, RedirectAttributes rttr) {
         MemberDTO loginResult = memberService.login(memberDTO);
-        if (loginResult != null) {
-            session.setAttribute("loginEmail", loginResult.getMemberEmail());
-            return "redirect:/timer"; // 로그인 성공 시 타이머 페이지로 이동
-        } else {
-            return "index"; // 로그인 실패 시 인덱스 페이지로 이동
-        }
+        HttpSession session = request.getSession();
+        MemberDTO login = memberService.login(memberDTO);
+        session.setAttribute("loginMember", login);
+        return "redirect:/timer";
     }
-}
 
+    @PostMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session != null) {
+            session.invalidate(); // 세션 무효화
+        }
+//        sdsd
+        return "redirect:/";
+    }
+
+}

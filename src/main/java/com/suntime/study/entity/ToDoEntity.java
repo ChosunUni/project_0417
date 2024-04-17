@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "todo_tables")
+@Table(name = "todo_table")
 public class ToDoEntity {
 
     @Id
@@ -17,6 +17,6 @@ public class ToDoEntity {
     @Column(length = 200)
     private String content;
 
-    @Column(nullable = false)
-    private Boolean completed;
+    @Column(nullable = false, columnDefinition = "INTEGER DEFAULT 0")
+    private Integer completed;
 }

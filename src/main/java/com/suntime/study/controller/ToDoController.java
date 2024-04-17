@@ -5,9 +5,7 @@ import com.suntime.study.service.ToDoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,12 +22,34 @@ public class ToDoController {
         return "todolist";
     }
 
-
-    // url 설정은 /todo/create
     @PostMapping("/todo/create")
     public String todoCreate(@RequestParam String content) {
-        this.toDoService.create(content);
-        // 다시 원래 화면으로 리다이렉트
+        toDoService.create(content);
         return "redirect:/todo";
+    }
+
+    @PostMapping("/todo/delete/{idx}")
+    public String todoDelete(@PathVariable Integer idx){
+        this.toDoService.delete(idx);
+        return "redirect:/todo";
+    }
+
+    @PostMapping("/todo/update/{idx}")
+    public String todoUpdate(@PathVariable Integer idx, @RequestParam String content){
+        this.toDoService.update(idx, content);
+        return "redirect:/todo";
+    }
+
+    @PostMapping("/todo/change/{idx}")
+    public String toggleTodoStatus(@PathVariable Integer idx) {
+        ToDoEntity todo = this.toDoService.findById(idx);
+        if (todo != null) {
+            Integer currentStatus = todo.getCompleted();
+            if (currentStatus != null) {
+                this.toDoService.changeStatus(idx, currentStatus == 0 ? 1 : 0);
+            }
+        }
+        return "redirect:/todo";
+        
     }
 }

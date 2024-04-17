@@ -14,6 +14,6 @@ public class BoardDTO {
     private String content; // 내용을 받을 필드
 
     public Board toEntity() {
-        return new Board(null, title, content); // Board 엔티티의 ID는 자동으로 생성되므로 null로 설정
+        return new Board(id, title, content); // Board 엔티티의 ID는 자동으로 생성되므로 null로 설정
     }
 }

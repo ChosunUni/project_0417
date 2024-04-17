@@ -16,6 +16,18 @@ spring:
   thymeleaf:
     cache: true
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: dsejong93@gmail.com
+    password: dgncdcrkqllptztx
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
   # spring data jpa 설정
   # spring data jpa 설정
   jpa:
@@ -23,4 +35,3 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-# 0403
