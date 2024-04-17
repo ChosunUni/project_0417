@@ -53,6 +53,7 @@
     font-family: Arial, sans-serif;
     color: black;
     font-size: 1rem;
+    margin-top: 20px;
 }
 .Button:hover {
     margin-bottom: 8px;
