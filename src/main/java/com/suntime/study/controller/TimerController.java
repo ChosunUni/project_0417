@@ -35,7 +35,7 @@ public class TimerController {
     public String subAllList(Model model) {
         List<TimerEntity> list = timerService.subAll();
         model.addAttribute("list", list);
-        return "redirect:/timer";
+        return "timer";
     }
 
     @PostMapping("/timer/del/{id}")
