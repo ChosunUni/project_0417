@@ -60,10 +60,11 @@
                 </form>
                 <form id="deleteForm" method="post">
                     <button class="Button1" id="delsub" type="button" onclick="deleteSubject()">과목 삭제</button>
-                    <div class="subject-dropdown"><select class="select" id="subjectselect" name="selectedSubjectId">
-                        <option value="" disabled selected hidden>과목선택</option>
-                        <option th:each="entity : ${list}" th:value="${entity.id}" th:text="${entity.subject}"></option>
-                    </select>
+                    <div class="subject-dropdown">
+                        <select class="select" id="subjectselect" name="selectedSubjectId" onchange="callTimerFromServer()">
+                            <option value="" disabled selected hidden>과목선택</option>
+                            <option th:each="entity : ${list}" th:value="${entity.id}" th:text="${entity.subject}"></option>
+                        </select>
                     </div>
                 </form>
 

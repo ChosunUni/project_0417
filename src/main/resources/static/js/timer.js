@@ -4,6 +4,21 @@ let running = false; // 타이머가 실행 중인지 여부를 저장하는 변
 let selectedSubjectId; // 선택된 과목의 ID를 저장하기 위한 변수
 let timeData; // 서버에서 가져온 시간 데이터를 저장하기 위한 변수
 
+function callTimerFromServer() {
+    var selectedId = document.querySelector('#subjectselect').value;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/get-time/" + selectedId, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // 성공적으로 요청이 완료되면 서버에서 받은 데이터를 처리합니다.
+            timeData = JSON.parse(xhr.responseText);
+            // 시간 데이터를 받아와서 타이머에 표시합니다.
+            updateTimerDisplay(timeData);
+        }
+    };
+    xhr.send();
+}
+
 // 시간 데이터를 서버에서 가져와서 타이머에 표시하고 타이머를 시작하는 함수
 function startTimerFromServer() {
     var selectedId = document.querySelector('#subjectselect').value;
