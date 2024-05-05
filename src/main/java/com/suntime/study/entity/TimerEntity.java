@@ -15,6 +15,9 @@ public class TimerEntity {
     private Long id;
 
     @Column
+    private String email;
+
+    @Column
     private String subject;
 
     @Column
@@ -28,6 +31,7 @@ public class TimerEntity {
 
     public static TimerEntity toTimerEntity(TimerDTO timerDTO){
         TimerEntity timerEntity = new TimerEntity();
+        timerEntity.setEmail(timerDTO.getEmail());
         timerEntity.setSubject(timerDTO.getSubject());
         return timerEntity;
     }

@@ -46,7 +46,7 @@
             <ul>
                 <li><a href="/todo">To-Do list</a></li>
                 <li><a href="../board">게시판</a></li>
-                <li><a href="#">Total time</a></li>
+                <li><a href="../total">Total time</a></li>
             </ul>
         </li>
         <li class="subject">
@@ -56,6 +56,7 @@
                     <button class="Button1" id="addsub">과목 추가</button>
                     <div class="subject-dropdown">
                         <input class="select" type="subject" name="subject">
+                        <input type="hidden" name="email" th:value="${session.loginMember.memberEmail}">
                     </div>
                 </form>
                 <form id="deleteForm" method="post">
@@ -67,7 +68,6 @@
                         </select>
                     </div>
                 </form>
-
             </ul>
         </li>
 </aside>
@@ -99,7 +99,7 @@
 <!-- 세션에서 loginMember 객체를 가져옵니다.-->
 <div th:with="loginMember=${session.loginMember}">
     <div th:if="${loginMember != null && loginMember.memberName != null}">
-        <p th:text="${loginMember.memberName} + ' 님'"></p>
+        <p th:text="${loginMember.memberEmail} + ' 님'"></p>
     </div>
 </div>
 
