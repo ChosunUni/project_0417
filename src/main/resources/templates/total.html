@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desktop</title>
+    <!--<link rel="import" href="index.html">-->
+    <link rel="stylesheet" href="../css/timer.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="../css/total.css">
+
+
+</head>
+<body>
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="../timer"><img src="../img/icon.png" alt="일몰 이미지" class="sunset-image" width = "70px">
+                <span style="font-size: 0.8em; vertical-align: middle;"></span></a>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-labe="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+            <form action="/index" method="post" class="form-inline">
+                <button type="submit" class="btn btn-outline-light">로그아웃</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<aside class="side-bar">
+    <section class="side-bar__icon-box">
+        <section class="side-bar__icon-1">
+            <div></div>
+            <div></div>
+            <div></div>
+        </section>
+    </section>
+    <ul>
+        <li>
+            <a href="#"><i class="fa-solid fa-cat"></i> menu</a>
+            <ul>
+                <li><a href="/todo">To-Do list</a></li>
+                <li><a href="../board">게시판</a></li>
+                <li><a href="/timer">Main</a></li>
+
+            </ul>
+        </li>
+</aside>
+<h1><center>당신의 공부 시간은 <span th:text="${totalTime}">00:00:00</span> 입니다!</center></h1>
+
+</body>
+<footer>
+    <div id="quoteContainer">
+        <p id="quote"></p>
+    </div>
+    <script src="../js/quotes.js" defer></script>
+    <style>
+        /* 추가된 CSS */
+        #quoteContainer {
+            text-align: center;
+            margin-bottom: 20px;
+            background-color: #f2f2f2;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #quote {
+            font-size: 20px;
+            font-style: italic;
+            color: #333;
+        }
+    </style>
+</footer>
+
+
+
+</html>
+
+
