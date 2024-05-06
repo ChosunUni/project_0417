@@ -12,11 +12,7 @@ spring:
     url: jdbc:mariadb://127.0.0.1:3306/db_study
     #    mysql에 생성한 사용자 계정 정보를 써야 합니다.
     username: root
-<<<<<<< HEAD
-    password: 12345678
-=======
     password: 1234
->>>>>>> origin/0406_todo
   thymeleaf:
     cache: true
 

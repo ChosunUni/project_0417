@@ -14,6 +14,9 @@ public class TotalEntity {
     private Long id;
 
     @Column
+    private String email;
+
+    @Column
     private Integer totalHours;
 
     @Column

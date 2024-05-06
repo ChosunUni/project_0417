@@ -16,8 +16,8 @@ public class TotalService {
     private final TimerRepository timerRepository;
 
     // 총 누적 시간 계산 메소드
-    public TotaltimeDTO calculateTotalTime() {
-        List<TimerEntity> timerEntities = timerRepository.findAll();
+    public TotaltimeDTO calculateTotalTime(String email) {
+        List<TimerEntity> timerEntities = timerRepository.findAllByEmail(email);
 
         // TimerEntity 리스트를 TimerDTO 리스트로 변환
         List<TimerDTO> timerDTOList = timerEntities.stream()
