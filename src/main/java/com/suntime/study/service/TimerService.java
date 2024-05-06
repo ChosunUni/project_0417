@@ -46,4 +46,8 @@ public class TimerService {
 
         return TimerDTO.fromTimerEntity(timerEntity);
     }
+    
+    public List<TimerEntity> subAllByEmail(String userEmail) {
+        return timerRepository.findAllByEmail(userEmail);
+    }
 }

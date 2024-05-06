@@ -1,5 +1,6 @@
 package com.suntime.study.dto;
 
+import com.suntime.study.entity.MemberEntity;
 import com.suntime.study.entity.TimerEntity;
 
 import lombok.Getter;
@@ -13,6 +14,7 @@ import lombok.ToString;
 @ToString
 public class TimerDTO {
     private String subject;
+    private String email;
     private Long id;
     private int hours;
     private int minutes;

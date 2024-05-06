@@ -80,4 +80,8 @@ public class MemberService {
             return null;
         }
     }
+    public MemberEntity findByEmail(String email) {
+        Optional<MemberEntity> memberOptional = memberRepository.findByMemberEmail(email);
+        return memberOptional.orElse(null);
+    }
 }
