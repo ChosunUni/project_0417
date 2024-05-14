@@ -36,7 +36,11 @@ body {
     background-color: black;
     width: var(--side-bar-width);
     min-height: var(--side-bar-height);   /* 사이드바의 높이를 전체 화면 높이의 90%로 지정 */
+<<<<<<< HEAD
     /*margin-top: calc((100vh - var(--side-bar-height)) / 2) - 20px;*/    /* 사이드바 위치 조절 */
+=======
+    margin-top: calc((100vh - var(--side-bar-height)) / 2) - 20px;    /* 사이드바 위치 조절 */
+>>>>>>> origin/0406_todo
 }
 
 /* 아이콘 시작 */
@@ -51,7 +55,11 @@ body {
     height: 17px;
     margin: 15px;
     margin-top: 20px;
+<<<<<<< HEAD
 /*    transition: .5s;*/
+=======
+    transition: .5s;
+>>>>>>> origin/0406_todo
 }
 
 :root {
