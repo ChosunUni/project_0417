@@ -33,7 +33,7 @@ public class MemberController {
         }
         // 회원가입 로직 수행
         memberService.save(memberDTO);
-        return "index";
+        return "redirect:/";
     }
 
     @PostMapping("/index")
