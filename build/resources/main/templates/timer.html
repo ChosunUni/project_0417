@@ -16,31 +16,47 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="../timer"><img src="../img/icon.png" alt="일몰 이미지" class="sunset-image" width = "70px">
-                <span style="font-size: 0.8em; vertical-align: middle;"></span></a>
+            <a class="navbar-brand" href="../timer">
+                <img src="../img/icon.png" alt="일몰 이미지" class="sunset-image" width="70px">
+                <span style="font-size: 0.8em; vertical-align: middle;"></span>
+            </a>
         </div>
-        <button class="navbar-toggler" type="button" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-labe="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-between flex-column flex-md-row" id="navbarSupportedContent">
             <div th:with="loginMember=${session.loginMember}" class="d-flex align-items-center">
                 <div th:if="${loginMember != null && loginMember.memberName != null}" class="mr-md-auto mb-2 mb-md-0">
                     <p th:text="${loginMember.memberName} + ' 님'"></p>
-                    <button type="submit" class="btn btn-outline-light small-button mb-2 mb-md-0 mr-md-2">내 정보</button>
+                    <!--<button type="submit" class="btn btn-outline-light small-button mb-2 mb-md-0 mr-md-2">내 정보</button>-->
                     <form action="/index" method="post" class="form-inline">
                         <button type="submit" class="btn btn-outline-light small-button">로그아웃</button>
                     </form>
                 </div>
             </div>
+            <!-- 수정된 부분 시작 -->
+            <div class="navbar-nav">
+                <div class="nav-item dropdown">
+                    <button class="btn btn-outline-light dropdown-toggle" type="button" id="menuDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Menu
+                    </button>
+
+                    <ul class="dropdown-menu" aria-labelledby="menuDropdown" id="navbarSupportedContent">
+                        <li><a class="dropdown-item" href="/todo">Todo list</a></li>
+                        <li><a class="dropdown-item" href="/board">게시판</a></li>
+                        <li><a class="dropdown-item" href="/total">Total time</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 수정된 부분 끝 -->
         </div>
     </div>
-    <div class = "top-bar con-min-width">
-        <div class ="con">
+    <div class="top-bar con-min-width">
+        <div class="con">
             <nav class="top-bar__menu-box-1">
                 <ul>
                     <li>
-                        <button type="submit" class="btn btn-outline-light">menu</button>
+                        <button type="submit" class="btn btn-outline-light">Menu</button>
                         <ul>
                             <li><a href="/todo">Todo list</a></li>
                             <li><a href="/board">게시판</a></li>
@@ -52,6 +68,9 @@
         </div>
     </div>
 </nav>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <script src ="../js/clock.js" defer></script>
