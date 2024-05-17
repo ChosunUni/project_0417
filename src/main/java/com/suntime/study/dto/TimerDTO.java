@@ -1,6 +1,5 @@
 package com.suntime.study.dto;
 
-import com.suntime.study.entity.MemberEntity;
 import com.suntime.study.entity.TimerEntity;
 
 import lombok.Getter;

@@ -32,11 +32,9 @@ public class TimerService {
     public void updateTimer(Long id, TimerDTO timerDTO) {
         TimerEntity timerEntity = timerRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Timer not found with id: " + id));
-
         timerEntity.setHours(timerDTO.getHours());
         timerEntity.setMinutes(timerDTO.getMinutes());
         timerEntity.setSeconds(timerDTO.getSeconds());
-
         timerRepository.save(timerEntity);
     }
 

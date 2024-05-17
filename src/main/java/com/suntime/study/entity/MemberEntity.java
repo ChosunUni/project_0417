@@ -1,9 +1,6 @@
 package com.suntime.study.entity;
 
-import com.suntime.study.dto.MemberDTO;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 // Entity란 실제 DB에 매칭되는 클래스를 의미한다

@@ -1,7 +1,10 @@
 package com.suntime.study.controller;
 
+import com.suntime.study.dto.MemberDTO;
 import com.suntime.study.entity.ToDoEntity;
 import com.suntime.study.service.ToDoService;
+
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,15 +19,20 @@ public class ToDoController {
     private final ToDoService toDoService;
 
     @GetMapping("/todo")
-    public String list(Model model) {
-        List<ToDoEntity> toDoEntityList = this.toDoService.getList();
+    public String list(Model model, HttpSession session) {
+        if (session.getAttribute("loginMember") == null) {
+            return "/index";
+        }   
+        MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+        String userEmail = loginMember.getMemberEmail();
+        List<ToDoEntity> toDoEntityList = this.toDoService.subAllByEmail(userEmail);
         model.addAttribute("toDoEntityList", toDoEntityList);
         return "todolist";
     }
-
+    
     @PostMapping("/todo/create")
-    public String todoCreate(@RequestParam String content) {
-        toDoService.create(content);
+    public String todoCreate(@RequestParam String email, @RequestParam String content) {
+        toDoService.create(email ,content);
         return "redirect:/todo";
     }
 
