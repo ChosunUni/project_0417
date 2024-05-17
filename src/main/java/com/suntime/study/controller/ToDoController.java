@@ -1,7 +1,6 @@
 package com.suntime.study.controller;
 
 import com.suntime.study.dto.MemberDTO;
-import com.suntime.study.dto.TimerDTO;
 import com.suntime.study.entity.ToDoEntity;
 import com.suntime.study.service.ToDoService;
 

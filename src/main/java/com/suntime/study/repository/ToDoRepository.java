@@ -1,6 +1,5 @@
 package com.suntime.study.repository;
 
-import com.suntime.study.entity.TimerEntity;
 import com.suntime.study.entity.ToDoEntity;
 
 import java.util.List;

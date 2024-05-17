@@ -2,7 +2,6 @@ package com.suntime.study.service;
 
 import java.util.List;
 
-import com.suntime.study.entity.TimerEntity;
 import com.suntime.study.entity.ToDoEntity;
 import com.suntime.study.repository.ToDoRepository;
 import lombok.RequiredArgsConstructor;
