@@ -45,8 +45,8 @@
         <div class="collapse navbar-collapse justify-content-between flex-column flex-md-row" id="navbarSupportedContent">
             <div th:with="loginMember=${session.loginMember}" class="d-flex align-items-center">
                 <div th:if="${loginMember != null && loginMember.memberName != null}" class="mr-md-auto mb-2 mb-md-0">
-                    <p th:text="${loginMember.memberEmail} + ' 님'"></p>
-                    <button type="submit" class="btn btn-outline-light small-button mb-2 mb-md-0 mr-md-2">내 정보</button>
+                    <p th:text="${loginMember.memberName} + ' 님'"></p>
+                    <!--<button type="submit" class="btn btn-outline-light small-button mb-2 mb-md-0 mr-md-2">내 정보</button>-->
                     <form action="/index" method="post" class="form-inline">
                         <button type="submit" class="btn btn-outline-light small-button">로그아웃</button>
                     </form>
@@ -61,7 +61,7 @@
                     <li>
                         <button type="submit" class="btn btn-outline-light">menu</button>
                         <ul>
-                            <li><a href="/timer">Main</a></li>
+                            <li><a href="/timer">Timer</a></li>
                             <li><a href="/board">게시판</a></li>
                             <li><a href="/total">Total time</a></li>
                         </ul>

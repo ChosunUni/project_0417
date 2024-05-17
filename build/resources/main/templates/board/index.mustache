@@ -17,5 +17,14 @@
     {{/boardList}}
     </tbody>
 </table>
-<a href="/board/write">글작성</a>
+<button type="button" class="btn btn-primary" style="background-color: #FA7C06; border: none;">
+    <a href="/board/write" style="color: white; text-decoration: none;">글작성</a>
+</button>
 {{>layouts/footer}}
+<style>
+    /* 추가된 CSS */
+    a {
+        color: inherit; /* 링크의 색상을 부모 요소의 색상으로 설정 */
+        text-decoration: none; /* 밑줄 제거 */
+    }
+</style>

@@ -26,7 +26,7 @@
         <div class="collapse navbar-collapse justify-content-between flex-column flex-md-row" id="navbarSupportedContent">
             <div th:with="loginMember=${session.loginMember}" class="d-flex align-items-center">
                 <div th:if="${loginMember != null && loginMember.memberName != null}" class="mr-md-auto mb-2 mb-md-0">
-                    <p th:text="${loginMember.memberEmail} + ' 님'"></p>
+                    <p th:text="${loginMember.memberName} + ' 님'"></p>
                     <button type="submit" class="btn btn-outline-light small-button mb-2 mb-md-0 mr-md-2">내 정보</button>
                     <form action="/index" method="post" class="form-inline">
                         <button type="submit" class="btn btn-outline-light small-button">로그아웃</button>
