@@ -24,6 +24,9 @@
                 <span class="btn_text">로그인</span>
             </button>
         </div>
+        <div th:if="${errorMessage}" style="color: red;">
+            <p th:text="${errorMessage}"></p>
+        </div>
     </form>
     <a href="/register"> 회원가입 </a>
 </div>
