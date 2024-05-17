@@ -33,15 +33,19 @@ public class MemberController {
         }
         // 회원가입 로직 수행
         memberService.save(memberDTO);
-        return "index";
+        return "redirect:/";
     }
 
     @PostMapping("/index")
     public String login(@ModelAttribute MemberDTO memberDTO, HttpServletRequest request, RedirectAttributes rttr) {
         MemberDTO loginResult = memberService.login(memberDTO);
+        if (loginResult == null) {
+            rttr.addFlashAttribute("errorMessage", "아이디 또는 비밀번호가 일치하지 않습니다.");
+            return "redirect:/";
+        }
+
         HttpSession session = request.getSession();
-        MemberDTO login = memberService.login(memberDTO);
-        session.setAttribute("loginMember", login);
+        session.setAttribute("loginMember", loginResult);
         return "redirect:/timer";
     }
 
