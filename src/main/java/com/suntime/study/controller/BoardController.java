@@ -43,8 +43,10 @@ public class BoardController {
         log.info("id = " + id);
         // 1. id를 조회해 데이터 가져오기
         Board boardEntity = boardRepository.findById(id).orElse(null); // 이는 id 값으로 데이터를 찾을 때 해당 id 값이 없으면 null을 반환하라는 뜻입니다.
+        List<CommentDto> commentsDtos = commentService.comments(id);
         // 2. 모델에 데이터 등록하기
         model.addAttribute("board",boardEntity); // 변수값을 "변수명"이라는 이름으로 추가
+        model.addAttribute("commentDtos",commentsDtos);
         // 3. 뷰 페이지 반환하기
         return "board/show";
     }
