@@ -2,16 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+<<<<<<< HEAD
     <title>일몰시 - To Do List</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/sidebar.css">
+=======
+    <title>일몰시 To Do List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/topbar.css">
+>>>>>>> d0cd6e2ceeeb75a71fd1707bb05f98092e3f4db3
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../css/todolist.css">
     <style>
 
         .todo-wrap table {
+<<<<<<< HEAD
             margin-left: 20px; /* TodoList 테이블의 왼쪽 여백 추가 */
         }
 
@@ -39,6 +47,20 @@
             font-size: 10px;
         }
         /* button 요소를 content-wrap 안에 오른쪽에 위치하도록 설정 */
+=======
+            margin-left: 20px;
+        }
+
+        .sat {
+            color: blue !important;
+        }
+        .sun, .holiday {
+            color: red !important;
+        }
+        .circle-icon-btn i{
+            font-size: 10px;
+        }
+>>>>>>> d0cd6e2ceeeb75a71fd1707bb05f98092e3f4db3
         /*.todo-wrap{
             display: flex;
             justify-content: flex-end;
@@ -53,6 +75,7 @@
             <a class="navbar-brand" href="../timer"><img src="../img/icon.png" alt="일몰 이미지" class="sunset-image" width = "70px">
                 <span style="font-size: 0.8em; vertical-align: middle;"></span></a>
         </div>
+<<<<<<< HEAD
     </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <form action="/index" method="post" class="form-inline">
@@ -78,6 +101,40 @@
             </ul>
         </li>
 </aside>
+=======
+        <button class="navbar-toggler" type="button" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-labe="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between flex-column flex-md-row" id="navbarSupportedContent">
+            <div th:with="loginMember=${session.loginMember}" class="d-flex align-items-center">
+                <div th:if="${loginMember != null && loginMember.memberName != null}" class="mr-md-auto mb-2 mb-md-0">
+                    <p th:text="${loginMember.memberName} + ' 님'"></p>
+                    <!--<button type="submit" class="btn btn-outline-light small-button mb-2 mb-md-0 mr-md-2">내 정보</button>-->
+                    <form action="/index" method="post" class="form-inline">
+                        <button type="submit" class="btn btn-outline-light small-button">로그아웃</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class = "top-bar con-min-width">
+        <div class ="con">
+            <nav class="top-bar__menu-box-1">
+                <ul>
+                    <li>
+                        <button type="submit" class="btn btn-outline-light">menu</button>
+                        <ul>
+                            <li><a href="/timer">Timer</a></li>
+                            <li><a href="/board">게시판</a></li>
+                            <li><a href="/total">Total time</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+</nav>
+>>>>>>> d0cd6e2ceeeb75a71fd1707bb05f98092e3f4db3
 
 
 
@@ -116,6 +173,10 @@
                     </div>
                         <form class = "add-task-form" th:action="@{/todo/create}" method="post">
                         <input name="content" placeholder="오늘의 할 일을 적어보세요!"/>
+<<<<<<< HEAD
+=======
+                        <input type="hidden" name="email" th:value="${session.loginMember.memberEmail}"/>
+>>>>>>> d0cd6e2ceeeb75a71fd1707bb05f98092e3f4db3
                         <button>작성</button>
                         </form>
                     <div class="todo-table-container">

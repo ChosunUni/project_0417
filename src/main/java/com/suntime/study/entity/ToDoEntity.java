@@ -14,6 +14,12 @@ public class ToDoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idx;
 
+<<<<<<< HEAD
+=======
+    @Column
+    private String email;
+
+>>>>>>> d0cd6e2ceeeb75a71fd1707bb05f98092e3f4db3
     @Column(length = 200)
     private String content;
 

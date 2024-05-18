@@ -20,10 +20,17 @@ public class EmailService {
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
             helper.setTo(to);
             helper.setSubject("Email Verification");
+<<<<<<< HEAD
 //            helper.setText("이메일 인증을 완료하려면 다음 링크를 클릭하세요.: <a href=\"http://localhost:8080/verify-email?email=" + to + "&token=" + verificationLink + "\">이메일 인증하기</a>", true);
 
             // 서버 아이피
             helper.setText("이메일 인증을 완료하려면 다음 링크를 클릭하세요.: <a href=\"http://35.216.17.70:8080/verify-email?email=" + to + "&token=" + verificationLink + "\">이메일 인증하기</a>", true);
+=======
+            helper.setText("이메일 인증을 완료하려면 다음 링크를 클릭하세요.: <a href=\"http://localhost:8080/verify-email?email=" + to + "&token=" + verificationLink + "\">이메일 인증하기</a>", true);
+
+            // 서버 아이피
+//            helper.setText("이메일 인증을 완료하려면 다음 링크를 클릭하세요.: <a href=\"http://35.216.17.70:8080/verify-email?email=" + to + "&token=" + verificationLink + "\">이메일 인증하기</a>", true);
+>>>>>>> d0cd6e2ceeeb75a71fd1707bb05f98092e3f4db3
             javaMailSender.send(message);
         } catch (MessagingException e) {
             e.printStackTrace();

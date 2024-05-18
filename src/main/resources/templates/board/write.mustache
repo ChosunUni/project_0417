@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {{>layouts/header}}
 <form class="container" action="/board/create" method="post">
     <div class="mb-3">
@@ -12,3 +13,22 @@
 </form>
 <a href="/board">Back</a>
 {{>layouts/footer}}
+=======
+{{>layouts/header}}
+<form class="container" action="/board/create" method="post">
+    <div class="mb-3">
+        <label class="form-label">제목</label>
+        <input type="text" class="form-control" name="title">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">내용</label>
+        <textarea class="form-control" rows="3" name="content"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" style="background-color: #FA7C06; border: none;">Submit</button>
+    <button type="button" class="btn" style="background-color: #FA7C06; color: black; border: none;">
+        <a href="/board" style="color: white; text-decoration: none;">Back</a>
+    </button>
+</form>
+
+{{>layouts/footer}}
+>>>>>>> d0cd6e2ceeeb75a71fd1707bb05f98092e3f4db3

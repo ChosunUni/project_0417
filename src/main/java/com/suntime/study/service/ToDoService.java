@@ -12,12 +12,22 @@ import org.springframework.stereotype.Service;
 public class ToDoService {
     private final ToDoRepository toDoRepository;
 
+<<<<<<< HEAD
     public List<ToDoEntity> getList(){
         return this.toDoRepository.findAll();
     }
 
     public void create(String content) {
         ToDoEntity toDoEntity = new ToDoEntity();
+=======
+    public List<ToDoEntity> subAllByEmail(String userEmail) {
+        return toDoRepository.findAllByEmail(userEmail);
+    }
+
+    public void create(String email ,String content) {
+        ToDoEntity toDoEntity = new ToDoEntity();
+        toDoEntity.setEmail(email);
+>>>>>>> d0cd6e2ceeeb75a71fd1707bb05f98092e3f4db3
         toDoEntity.setContent(content);
         toDoEntity.setCompleted(0); // completed 필드를 0으로 설정
         this.toDoRepository.save(toDoEntity);
