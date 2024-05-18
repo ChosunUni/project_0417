@@ -46,7 +46,7 @@ public class BoardApiController { ///
     // DELETE
     @DeleteMapping("/api/board/{id}")
     public ResponseEntity<Board> delete(@PathVariable Long id){
-        Board deleted = articleService.delete(id);
+        Board deleted = boardService.delete(id);
         return (deleted != null) ? // 삭제가 되면 정상, 안 되면 오류 응답
                 ResponseEntity.status(HttpStatus.NO_CONTENT).build() :
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -54,7 +54,7 @@ public class BoardApiController { ///
     @PostMapping("/api/board/transaction-test")
     public ResponseEntity<List<Board>> transactionTest
             (@RequestBody List<BoardDTO> dtos){
-        List<Board> createdList = articleService.createBoards(dtos);
+        List<Board> createdList = boardService.createBoards(dtos);
         return (createdList != null) ?
                 ResponseEntity.status(HttpStatus.OK).body(createdList) :
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
