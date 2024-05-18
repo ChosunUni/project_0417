@@ -21,4 +21,10 @@ public class Board {
     public Long getId(){
         return id;
     }
+    public void patch(Board board) {
+        if(board.title != null)
+            this.title = board.title;
+        if(board.content != null)
+            this.content = board.content;
+    }
 }
