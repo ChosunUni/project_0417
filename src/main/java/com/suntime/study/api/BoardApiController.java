@@ -15,8 +15,7 @@ import java.util.List;
 @RestController
 public class BoardApiController { ///
     @Autowired
-    private BoardService boardService;
-    private BoardService articleService; // 서비스 객체 주입
+    private BoardService boardService; // 서비스 객체 주입
     // GET
     @GetMapping("/api/board")
     public List<Board> index(){
