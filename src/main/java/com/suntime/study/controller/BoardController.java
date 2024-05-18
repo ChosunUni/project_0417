@@ -1,8 +1,10 @@
 package com.suntime.study.controller;
 
 import com.suntime.study.dto.BoardDTO;
+import com.suntime.study.dto.CommentDto;
 import com.suntime.study.entity.Board;
 import com.suntime.study.repository.BoardRepository;
+import com.suntime.study.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,12 +15,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Controller
-public class BoardController {
+public class BoardController {//
     @Autowired // 스프링 부트가 미리 생성해 놓은 리파지터리 객체 주입(DI)
     private BoardRepository boardRepository;
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping("/board/write")
     public String newBoardForm(){
