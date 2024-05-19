@@ -1,8 +1,10 @@
 package com.suntime.study.controller;
 
 import com.suntime.study.dto.BoardDTO;
+import com.suntime.study.dto.CommentDto;
 import com.suntime.study.entity.Board;
 import com.suntime.study.repository.BoardRepository;
+import com.suntime.study.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,12 +15,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Controller
-public class BoardController {
+public class BoardController {//
     @Autowired // 스프링 부트가 미리 생성해 놓은 리파지터리 객체 주입(DI)
     private BoardRepository boardRepository;
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping("/board/write")
     public String newBoardForm(){
@@ -43,8 +48,10 @@ public class BoardController {
         log.info("id = " + id);
         // 1. id를 조회해 데이터 가져오기
         Board boardEntity = boardRepository.findById(id).orElse(null); // 이는 id 값으로 데이터를 찾을 때 해당 id 값이 없으면 null을 반환하라는 뜻입니다.
+        List<CommentDto> commentsDtos = commentService.comments(id);
         // 2. 모델에 데이터 등록하기
         model.addAttribute("board",boardEntity); // 변수값을 "변수명"이라는 이름으로 추가
+        model.addAttribute("commentDtos",commentsDtos);
         // 3. 뷰 페이지 반환하기
         return "board/show";
     }

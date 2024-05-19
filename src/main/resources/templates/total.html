@@ -72,42 +72,39 @@
     });
 </script>
 <main class="image">
-    <div th:switch="${totalTime}">
-        <div th:case="*{totalHours &gt;= 6}">
-            <!-- 6시간 이상일 때의 이미지 -->
-                <img src="../img/verygood.png" alt="Good Job!">
-        </div>
-        <div th:case="*{totalHours &gt;= 4}">
-            <!-- 4시간 이상 6시간 미만일 때의 이미지 -->
-                <img src="../img/good.png" alt="Well Done!">
-        </div>
-        <div th:case="*{totalHours &gt;= 2}">
-            <!-- 2시간 이상 4시간 미만일 때의 이미지 -->
-                <img src="../img/soso.png" alt="Keep it Up!">
-        </div>
-        <div th:case="*{totalHours &gt;= 1}">
-            <!-- 1시간 이상 2시간 미만일 때의 이미지 -->
-                <img src="../img/bad.png" alt="Keep Going!">
-        </div>
-        <div th:case="*">
-            <!-- 1시간 미만일 때의 이미지 -->
-                <img src="../img/verybad.png" alt="What is This?">
-        </div>
+    <div th:if="${totalHours >= 6}">
+        <!-- 6시간 이상일 때의 이미지 -->
+        <img src="../img/verygood.png" alt="Good Job!">
+    </div>
+    <div th:if="${totalHours >= 4 and totalHours < 6}">
+        <!-- 4시간 이상 6시간 미만일 때의 이미지 -->
+        <img src="../img/good.png" alt="Well Done!">
+    </div>
+    <div th:if="${totalHours >= 2 and totalHours < 4}">
+        <!-- 2시간 이상 4시간 미만일 때의 이미지 -->
+        <img src="../img/soso.png" alt="Keep it Up!">
+    </div>
+    <div th:if="${totalHours >= 1 and totalHours < 2}">
+        <!-- 1시간 이상일 때의 이미지 -->
+        <img src="../img/bad.png" alt="Keep Going!">
+    </div>
+    <div th:if="${totalHours < 1}">
+        <!-- 1시간 미만일 때의 이미지 -->
+        <img src="../img/verybad.png" alt="What is This?">
     </div>
     <h1>
         <center>당신의 공부 시간은
-            <!-- 시간이 1시간 이상일 때만 시간을 표시 -->
-            <span th:if="${#strings.substring(totalTime, 0, 2) != '00'}" th:text="${#strings.substring(totalTime, 0, 2)} + '시간'"></span>
+            <span th:if="${totalHours != 0}" th:text="${totalHours + '시간'}"></span>
             <!-- 분이 1분 이상이거나 시간이 1시간 이상일 때 분을 표시 -->
-            <span th:if="${#strings.substring(totalTime, 0, 2) != '00' or #strings.substring(totalTime, 3, 5) != '00'}">
-            <span th:text="${#strings.substring(totalTime, 3, 5).replaceAll('^0+', '')}"></span>분
-        </span>
+            <span th:if="${totalHours != 0 || totalMinutes != 0}">
+                <span th:text="${totalMinutes}"></span>분
+            </span>
             <!-- 초를 항상 표시 -->
-            <span th:text="${#strings.substring(totalTime, 6, 8).replaceAll('^0+', '')}"></span>초입니다! 오늘도 힘내세요!
+            <span th:text="${totalSeconds}"></span>초입니다! 오늘도 힘내세요!
         </center>
     </h1>
-
 </main>
+
 
 </body>
 <footer>
