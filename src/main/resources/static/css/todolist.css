@@ -17,6 +17,7 @@
 }
 .todo-content {
     word-wrap: break-word;
+    max-width: 400px;
 }
 .todo-button {
     float: right; /* 오른쪽으로 위치하도록 설정 */
@@ -130,4 +131,63 @@ button {
 }
 .input-wrap input {
     width: 300px;
+}
+.todo-wrap {
+    position: relative;
+    max-width: 550px;/* 부모 요소를 relative로 설정 */
+}
+
+.modal {
+    position: absolute; /* 절대 위치 설정 */
+    bottom: 0; /* 아래로 정렬 */
+    left: 50%; /* 가운데 정렬 */
+    transform: translateX(-50%); /* 가운데 정렬 */
+    width: 300px;
+    height: 70px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none;
+    background-color: rgba(250, 132, 6, 0.88);
+}
+#completeBtn {
+    color: white;
+    /* 다른 스타일 속성들 */
+}
+.footer {
+    position: fixed; /* 고정 위치로 설정합니다. */
+    bottom: 0; /* 화면 아래에 위치하도록 설정합니다. */
+    width: 100%; /* 전체 너비를 차지하도록 설정합니다. */
+}
+.quoteContainer {
+    position: fixed; /* 고정 위치로 설정합니다. */
+    bottom: 0; /* 화면 아래에 위치하도록 설정합니다. */
+    width: 100%; /* 전체 너비를 차지하도록 설정합니다. */
+}
+
+@media only screen and (max-width: 600px) {
+    .wrapper {
+        width: 90%; /* 화면 너비의 90%로 설정하여 좀 더 좁은 화면에도 적절히 맞출 수 있습니다. */
+        margin: 20px auto; /* 위아래 여백을 줄입니다. */
+        padding: 15px; /* 내부 여백을 조정합니다. */
+    }
+
+    .content-wrap {
+        width: 100%; /* 전체 너비를 사용하도록 설정합니다. */
+        margin: 20px auto; /* 위아래 여백을 줄입니다. */
+    }
+
+    .todo-wrap {
+        max-width: 100%; /* 최대 너비를 100%로 설정하여 좀 더 좁은 화면에 맞출 수 있습니다. */
+    }
+
+    .modal {
+        width: 90%; /* 화면 너비의 90%로 설정하여 좀 더 좁은 화면에도 적절히 맞출 수 있습니다. */
+    }
+
+    #completeBtn {
+        width: 100%; /* 버튼의 너비를 100%로 설정하여 부모 요소에 맞추도록 합니다. */
+    }
 }
