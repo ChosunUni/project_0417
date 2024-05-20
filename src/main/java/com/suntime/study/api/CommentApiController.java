@@ -45,6 +45,6 @@ public class CommentApiController {
         // 서비스에 위임
         CommentDto deletedDto = commentService.delete(id);
         // 결과 응답
-        return null;
+        return null; // 리턴값
     }
 }
