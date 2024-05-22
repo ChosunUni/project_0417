@@ -166,6 +166,9 @@ button {
     bottom: 0; /* 화면 아래에 위치하도록 설정합니다. */
     width: 100%; /* 전체 너비를 차지하도록 설정합니다. */
 }
+.completed .todo-content {
+    text-decoration: line-through;
+}
 
 @media only screen and (max-width: 600px) {
     .wrapper {
