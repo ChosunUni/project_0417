@@ -41,14 +41,14 @@ public class TimerController {
         // 세션 확인
         if (session.getAttribute("loginMember") == null) {
             // 세션이 없는 경우에는 로그인 페이지로 리다이렉트
-            return "/index";
+            return "index";
         }
         //세션이 있는경우 세션 안에서 이메일 확인해서 리스트 불러옴
         MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
         String userEmail = loginMember.getMemberEmail();
         List<TimerEntity> filteredList = timerService.subAllByEmail(userEmail);
         model.addAttribute("list", filteredList);
-        return "/timer";
+        return "timer";
     }
 
     @PostMapping("/timer/del/{id}")

@@ -21,7 +21,7 @@ public class ToDoController {
     @GetMapping("/todo")
     public String list(Model model, HttpSession session) {
         if (session.getAttribute("loginMember") == null) {
-            return "/index";
+            return "index";
         }   
         MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
         String userEmail = loginMember.getMemberEmail();
