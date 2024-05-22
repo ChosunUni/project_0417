@@ -5,26 +5,12 @@ import com.suntime.study.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
-<<<<<<< HEAD
-import jakarta.validation.constraints.Pattern;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.validation.Errors;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.Map;
-=======
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
->>>>>>> d0cd6e2ceeeb75a71fd1707bb05f98092e3f4db3
 
 @Controller
 public class MemberController {
@@ -47,21 +33,12 @@ public class MemberController {
         }
         // 회원가입 로직 수행
         memberService.save(memberDTO);
-<<<<<<< HEAD
-        return "index";
-=======
         return "redirect:/";
->>>>>>> d0cd6e2ceeeb75a71fd1707bb05f98092e3f4db3
     }
 
     @PostMapping("/index")
     public String login(@ModelAttribute MemberDTO memberDTO, HttpServletRequest request, RedirectAttributes rttr) {
         MemberDTO loginResult = memberService.login(memberDTO);
-<<<<<<< HEAD
-        HttpSession session = request.getSession();
-        MemberDTO login = memberService.login(memberDTO);
-        session.setAttribute("loginMember", login);
-=======
         if (loginResult == null) {
             rttr.addFlashAttribute("errorMessage", "아이디 또는 비밀번호가 일치하지 않습니다.");
             return "redirect:/";
@@ -69,7 +46,6 @@ public class MemberController {
 
         HttpSession session = request.getSession();
         session.setAttribute("loginMember", loginResult);
->>>>>>> d0cd6e2ceeeb75a71fd1707bb05f98092e3f4db3
         return "redirect:/timer";
     }
 

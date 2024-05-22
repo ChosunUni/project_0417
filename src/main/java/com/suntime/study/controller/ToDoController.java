@@ -24,20 +24,9 @@ public class ToDoController {
     private final ToDoService toDoService;
 
     @GetMapping("/todo")
-<<<<<<< HEAD
-    public String list(Model model) {
-        List<ToDoEntity> toDoEntityList = this.toDoService.getList();
-        model.addAttribute("toDoEntityList", toDoEntityList);
-        return "todolist";
-    }
-
-    @PostMapping("/todo/create")
-    public String todoCreate(@RequestParam String content) {
-        toDoService.create(content);
-=======
     public String list(Model model, HttpSession session) {
         if (session.getAttribute("loginMember") == null) {
-            return "/index";
+            return "index";
         }   
         MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
         String userEmail = loginMember.getMemberEmail();
@@ -49,7 +38,6 @@ public class ToDoController {
     @PostMapping("/todo/create")
     public String todoCreate(@RequestParam String email, @RequestParam String content) {
         toDoService.create(email ,content);
->>>>>>> d0cd6e2ceeeb75a71fd1707bb05f98092e3f4db3
         return "redirect:/todo";
     }
 
