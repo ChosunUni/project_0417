@@ -41,7 +41,6 @@ public class BoardApiController { ///
         return (updated != null) ? // 수정되면 정상, 안 되면 오류 응답
                 ResponseEntity.status(HttpStatus.OK).body(updated) :
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-
     }
     // DELETE
     @DeleteMapping("/api/board/{id}")
