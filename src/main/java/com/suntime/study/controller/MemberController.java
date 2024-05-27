@@ -40,7 +40,8 @@ public class MemberController {
     public String login(@ModelAttribute MemberDTO memberDTO, HttpServletRequest request, RedirectAttributes rttr) {
         MemberDTO loginResult = memberService.login(memberDTO);
         if (loginResult == null) {
-            rttr.addFlashAttribute("errorMessage", "아이디 또는 비밀번호가 일치하지 않습니다.");
+            rttr.addFlashAttribute("errorMessage", "아이디 또는 비밀번호가 일치하지 않습니다.\n 이메일 인증을 확인하십시오.");
+
             return "redirect:/";
         }
 

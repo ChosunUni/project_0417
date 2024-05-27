@@ -65,18 +65,27 @@ public class MemberService {
     }
 
     public MemberDTO login(MemberDTO memberDTO) {
-        /*
-            1. 회원이 입력한 이메일로 DB에서 조회를 함
-            2. DB에서 조회한 비밀번호와 사용자가 입력한 비밀번호가 일치하는지 판단
-         */
+    /*
+        1. 회원이 입력한 이메일로 DB에서 조회를 함
+        2. DB에서 조회한 비밀번호와 사용자가 입력한 비밀번호가 일치하는지 판단
+        3. 회원 이메일 체크 여부 확인 (memberEmailCheck가 1이어야 함)
+     */
         Optional<MemberEntity> optionalMember = memberRepository.findByMemberEmail(memberDTO.getMemberEmail());
         if (optionalMember.isPresent()) {
             // 조회 결과가 있다(해당 이메일을 가진 회원 정보가 있다)
             MemberEntity memberEntity = optionalMember.get();
             if (passwordEncoder.matches(memberDTO.getMemberPW(), memberEntity.getMemberPW())) {
                 // 비밀번호 일치
-                // entity -> dto 변환 후 리턴
-                return MemberDTO.toMemberDTO(memberEntity);
+                if (memberEntity.getMemberEmailCheck() == 1) {
+                    // 이메일 체크 완료된 회원인 경우에만 로그인 허용
+                    // entity -> dto 변환 후 리턴
+                    return MemberDTO.toMemberDTO(memberEntity);
+                } else {
+                    // 이메일 체크가 되어있지 않은 회원일 경우
+                    // 추가적인 처리 필요 (예를 들어 경고 메시지 전송 등)
+                    // 여기서는 일단 null을 리턴하여 로그인 거부
+                    return null;
+                }
             } else {
                 // 비밀번호 불일치(로그인 실패)
                 return null;
@@ -86,6 +95,7 @@ public class MemberService {
             return null;
         }
     }
+
 
     public MemberEntity findByEmail(String email) {
         Optional<MemberEntity> memberOptional = memberRepository.findByMemberEmail(email);
