@@ -5,12 +5,12 @@ import com.suntime.study.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 
 @Controller
 public class MemberController {
@@ -27,37 +27,45 @@ public class MemberController {
     }
 
     @PostMapping("/register")
-    public String save(@Valid @ModelAttribute MemberDTO memberDTO, BindingResult result) {
-        if (result.hasErrors()) {
-            return "register"; // 유효성 검사 에러가 있으면 다시 폼으로 돌려보냄
+    public String save(@Valid @ModelAttribute MemberDTO memberDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            return "register";
         }
-        // 회원가입 로직 수행
         memberService.save(memberDTO);
+        redirectAttributes.addFlashAttribute("message", "회원가입이 완료되었습니다. 이메일 인증을 해주세요.");
         return "redirect:/";
+    }
+
+    @GetMapping("/check-email")
+    @ResponseBody
+    public boolean checkEmailDuplicate(@RequestParam String email) {
+        return memberService.isEmailDuplicate(email);
+    }
+
+    @GetMapping("/verify")
+    public String verifyEmail(@RequestParam String email, @RequestParam String token, Model model) {
+        boolean isVerified = memberService.verifyEmail(email, token);
+        if (isVerified) {
+            model.addAttribute("message", "이메일 인증이 완료되었습니다.");
+        } else {
+            model.addAttribute("message", "이메일 인증에 실패했습니다.");
+        }
+        return "verificationResult";
     }
 
     @PostMapping("/index")
-    public String login(@ModelAttribute MemberDTO memberDTO, HttpServletRequest request, RedirectAttributes rttr) {
+    public String login(@ModelAttribute MemberDTO memberDTO, HttpServletRequest request, RedirectAttributes redirectAttributes) {
         MemberDTO loginResult = memberService.login(memberDTO);
-        if (loginResult == null) {
-            rttr.addFlashAttribute("errorMessage", "아이디 또는 비밀번호가 일치하지 않습니다.\n 이메일 인증을 확인하십시오.");
-
+        if (loginResult != null) {
+            HttpSession session = request.getSession();
+            session.setAttribute("loginMember", loginResult);
+            return "redirect:/timer";
+        } else {
+            redirectAttributes.addFlashAttribute("errorMessage", "아이디 또는 비밀번호가 일치하지 않습니다.\n 이메일 인증을 확인하십시오.");
             return "redirect:/";
         }
-
-        HttpSession session = request.getSession();
-        session.setAttribute("loginMember", loginResult);
-        return "redirect:/timer";
     }
 
-    @PostMapping("/logout")
-    public String logout(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        if (session != null) {
-            session.invalidate(); // 세션 무효화
-        }
-//        sdsd
-        return "redirect:/";
-    }
+
 
 }

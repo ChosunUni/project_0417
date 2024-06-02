@@ -15,6 +15,10 @@ import java.util.UUID;
 public class MemberService {
     private final MemberRepository memberRepository;
 
+    public boolean isEmailDuplicate(String email) {
+        return memberRepository.findByMemberEmail(email).isPresent();
+    }
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -28,18 +32,11 @@ public class MemberService {
     public void save(MemberDTO memberDTO) {
         String verificationToken = generateVerificationToken();
 
-
         // 비밀번호를 인코딩하여 회원가입
         String encodedPassword = passwordEncoder.encode(memberDTO.getMemberPW());
         memberDTO.setMemberPW(encodedPassword);
 
         // DTO를 Entity로 변환
-//
-//        MemberEntity memberEntity = new MemberEntity();
-//        memberEntity.setMemberEmail(memberDTO.getMemberEmail());
-//        memberEntity.setMemberPW(memberDTO.getMemberPW());
-//        memberEntity.setMemberName(memberDTO.getMemberName());
-
         MemberEntity memberEntity = new MemberEntity(
                 memberDTO.getMemberEmail(),
                 memberDTO.getMemberPW(),
@@ -54,9 +51,9 @@ public class MemberService {
         emailService.sendVerificationEmail(memberDTO.getMemberEmail(), verificationToken);
     }
 
-    public boolean verifyEmail(String memberEmail, String token){
+    public boolean verifyEmail(String memberEmail, String token) {
         MemberEntity member = memberRepository.findByMemberEmail(memberEmail).orElse(null);
-        if(member != null && member.getVerificationToken().equals(token)){
+        if (member != null && member.getVerificationToken().equals(token)) {
             member.setMemberEmailCheck(1);
             memberRepository.save(member);
             return true;
@@ -65,37 +62,22 @@ public class MemberService {
     }
 
     public MemberDTO login(MemberDTO memberDTO) {
-    /*
-        1. 회원이 입력한 이메일로 DB에서 조회를 함
-        2. DB에서 조회한 비밀번호와 사용자가 입력한 비밀번호가 일치하는지 판단
-        3. 회원 이메일 체크 여부 확인 (memberEmailCheck가 1이어야 함)
-     */
         Optional<MemberEntity> optionalMember = memberRepository.findByMemberEmail(memberDTO.getMemberEmail());
         if (optionalMember.isPresent()) {
-            // 조회 결과가 있다(해당 이메일을 가진 회원 정보가 있다)
             MemberEntity memberEntity = optionalMember.get();
             if (passwordEncoder.matches(memberDTO.getMemberPW(), memberEntity.getMemberPW())) {
-                // 비밀번호 일치
                 if (memberEntity.getMemberEmailCheck() == 1) {
-                    // 이메일 체크 완료된 회원인 경우에만 로그인 허용
-                    // entity -> dto 변환 후 리턴
                     return MemberDTO.toMemberDTO(memberEntity);
                 } else {
-                    // 이메일 체크가 되어있지 않은 회원일 경우
-                    // 추가적인 처리 필요 (예를 들어 경고 메시지 전송 등)
-                    // 여기서는 일단 null을 리턴하여 로그인 거부
-                    return null;
+                    return null; // 이메일 체크가 되어있지 않은 회원일 경우 로그인 거부
                 }
             } else {
-                // 비밀번호 불일치(로그인 실패)
-                return null;
+                return null; // 비밀번호 불일치
             }
         } else {
-            // 조회 결과가 없다(해당 이메일을 가진 회원이 없다)
-            return null;
+            return null; // 해당 이메일을 가진 회원이 없음
         }
     }
-
 
     public MemberEntity findByEmail(String email) {
         Optional<MemberEntity> memberOptional = memberRepository.findByMemberEmail(email);

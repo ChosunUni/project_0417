@@ -4,49 +4,53 @@
     <meta charset="UTF-8">
     <title>일몰시 회원가입</title>
     <link rel="stylesheet" href="../css/form.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <style>
-    h1{
+    h1 {
         text-align: center;
     }
-</style>
-<style>
-    h5{
+    h5 {
         text-align: center;
-        color : darkgray;
+        color: darkgray;
         margin-bottom: -5px;
     }
+    .error {
+        color: red;
+    }
+    .success {
+        color: green;
+    }
 </style>
-</head>
 <body>
 <h1><img src="../img/icon.png" alt="일몰 이미지" class="sunset-image"></h1>
-<form action="/register" method="post" th:object="${memberDTO}">
+<form id="registerForm" action="/register" method="post" th:object="${memberDTO}">
     <div class="form-group">
-        <!--<label>이메일</label>-->
-        <input type="text" th:field="*{memberEmail}" class="form-control" placeholder="이메일 입력" /><br>
+        <input type="text" th:field="*{memberEmail}" id="email" class="form-control" placeholder="이메일 입력" />
+        <button type="button" id="checkEmailBtn" onclick="checkDuplicateEmail()">중복 확인</button>
+        <br>
+        <span id="emailError" class="error" style="display: none;">이미 사용 중인 이메일입니다.</span>
+        <span id="emailSuccess" class="success" style="display: none;">사용 가능한 이메일입니다.</span>
+        <span id="emailFormatError" class="error" style="display: none;">올바른 이메일 형식을 입력하세요.</span>
         <span th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}" class="error"></span>
     </div>
 
     <div class="form-group">
-        <!--<label>비밀번호</label>-->
         <input type="password" th:field="*{memberPW}" id="password" class="form-control" placeholder="비밀번호 입력" /><br>
         <span th:if="${#fields.hasErrors('memberPW')}" th:errors="*{memberPW}" class="error"></span>
     </div>
 
     <div class="form-group">
-        <!--<label>비밀번호 확인</label>-->
         <input type="password" id="confirmPassword" class="form-control" placeholder="비밀번호 확인" /><br>
         <span id="passwordMismatch" class="error" style="display: none;">비밀번호가 일치하지 않습니다.</span>
     </div>
 
     <div class="form-group">
-        <!--<label>이름</label>-->
         <input type="text" th:field="*{memberName}" class="form-control" placeholder="이름 입력" /><br>
         <span th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}" class="error"></span>
     </div>
     <div class="button_submit">
-        <button type="submit">회원가입
-        </button>
+        <button type="submit">회원가입</button>
     </div>
 </form>
 <h5>*이메일 형식을 올바르게 작성하시오.</h5>
@@ -56,40 +60,12 @@
 <script>
     var form = document.getElementById("registerForm");
 
-    // 폼 제출 이벤트 처리
     form.addEventListener("submit", function(event) {
-        event.preventDefault(); // 기본 제출 방식 방지
-
-        // 비밀번호 일치 여부 검증
         if (!validatePassword()) {
-            return;
+            event.preventDefault();
         }
-
-        // 폼 데이터 가져오기
-        var formData = new FormData(form);
-
-        // AJAX 요청 보내기
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/register", true);
-        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    // 성공적으로 처리된 경우
-                    alert("회원가입이 완료되었습니다.");
-
-                    // 인덱스 페이지로 이동
-                    window.location.href = "/"; // 이동할 페이지의 URL을 설정
-                } else {
-                    // 오류가 발생한 경우
-                    alert("회원가입 중 오류가 발생했습니다.");
-                }
-            }
-        };
-        xhr.send(JSON.stringify(Object.fromEntries(formData.entries())));
     });
 
-    // 비밀번호 확인 검증 함수
     function validatePassword() {
         var password = document.getElementById("password").value;
         var confirmPassword = document.getElementById("confirmPassword").value;
@@ -102,6 +78,48 @@
             passwordMismatch.style.display = "none";
             return true;
         }
+    }
+
+    function validateEmailFormat(email) {
+        var emailFormatError = document.getElementById("emailFormatError");
+        var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+        if (!emailPattern.test(email)) {
+            emailFormatError.style.display = "block";
+            return false;
+        } else {
+            emailFormatError.style.display = "none";
+            return true;
+        }
+    }
+
+    function checkDuplicateEmail() {
+        var email = document.getElementById("email").value;
+
+        if (!validateEmailFormat(email)) {
+            return;
+        }
+
+        $.ajax({
+            url: '/check-email',
+            type: 'GET',
+            data: { email: email },
+            success: function(response) {
+                if (response) {
+                    $('#emailError').show();
+                    $('#emailSuccess').hide();
+                    $('#email').prop('readonly', false);
+                } else {
+                    $('#emailSuccess').show();
+                    $('#emailError').hide();
+                    $('#email').prop('readonly', true);
+                    $('#checkEmailBtn').prop('disabled', true);
+                }
+            },
+            error: function() {
+                alert("이메일 중복 확인 중 오류가 발생했습니다.");
+            }
+        });
     }
 </script>
 </body>
