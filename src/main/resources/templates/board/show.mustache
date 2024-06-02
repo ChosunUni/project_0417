@@ -1,15 +1,16 @@
 {{>layouts/header}}
 <div class="container">
-    <table class="table">
-        <thead>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Title</th>
                 <th scope="col">Content</th>
                 <th scope="col">Actions</th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             {{#board}}
                 <tr>
                     <td>{{id}}</td>
@@ -21,12 +22,16 @@
                     </td>
                 </tr>
             {{/board}}
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
     <button type="button" class="btn" style="background-color: #FA7C06; color: black; border: none;">
         <a href="/board" style="color: white; text-decoration: none;">목록</a>
     </button>
+
+    <div class="comments-section mt-4">
+        {{>comments/_comments}}
+    </div>
 </div>
 
-{{>comments/_comments}}
 {{>layouts/footer}}
