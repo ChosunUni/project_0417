@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="494b5c36-8fda-439a-a9cc-e03f0d51d33b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/suntime/study/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/suntime/study/service/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/emailTemplates.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/emailTemplates.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/register.html" afterDir="false" />
-    </list>
+    <list default="true" id="9c4ca6aa-56fb-4da7-963e-9305694a4463" name="변경" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,69 +21,88 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
-  <component name="ProjectId" id="2hJom0V0yZZ7BZ2xThmQet4tNPU" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2hRQaRIGQWuqGxpUh8mDjhDrWpv" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Gradle.Build project_0417.executor": "Run",
+    "Gradle.project_0417-0406_todo 빌드.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Spring Boot.StudyApplication.executor": "Run",
     "git-widget-placeholder": "0406__todo",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/pppp6/OneDrive/바탕 화면/spring_0602/project_0417",
-    "node.js.detected.package.eslint": "true",
+    "last_opened_file_path": "/Users/gimdong-wan/Documents/완동/project_0417-0406_todo",
     "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="project_0417" />
+    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
+      <setting name="path" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="file://$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="project_0417" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StudyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="study.main" />
+    <configuration name="StudyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="com.suntime.study.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.suntime.study.StudyApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.suntime.study.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.StudyApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
       </set>
     </attachedChunks>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="494b5c36-8fda-439a-a9cc-e03f0d51d33b" name="Changes" comment="" />
-      <created>1717321697045</created>
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="9c4ca6aa-56fb-4da7-963e-9305694a4463" name="변경" comment="" />
+      <created>1717554472903</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1717321697045</updated>
-      <workItem from="1717321698426" duration="1192000" />
+      <updated>1717554472903</updated>
+      <workItem from="1717554474593" duration="1000" />
+      <workItem from="1717554568672" duration="1000" />
+      <workItem from="1717554698245" duration="36000" />
+      <workItem from="1717554736401" duration="50000" />
+      <workItem from="1717554801707" duration="32000" />
+      <workItem from="1717556134893" duration="39000" />
+      <workItem from="1717556244826" duration="338000" />
+      <workItem from="1717556599877" duration="678000" />
+      <workItem from="1717557291413" duration="51000" />
     </task>
     <servers />
   </component>

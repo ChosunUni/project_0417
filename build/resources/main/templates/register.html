@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>일몰시 회원가입</title>
@@ -58,11 +58,16 @@
 <h5>*작성한 비밀번호를 재입력하시오.</h5>
 <h5>*이름은 3글자에서 10글자 사이로 작성하시오.</h5>
 <script>
+    var emailVerified = false;
+
     var form = document.getElementById("registerForm");
 
     form.addEventListener("submit", function(event) {
-        if (!validatePassword()) {
+        if (!validatePassword() || !emailVerified) {
             event.preventDefault();
+            if (!emailVerified) {
+                alert("이메일 중복 확인을 완료해주세요.");
+            }
         }
     });
 
@@ -109,15 +114,18 @@
                     $('#emailError').show();
                     $('#emailSuccess').hide();
                     $('#email').prop('readonly', false);
+                    emailVerified = false;
                 } else {
                     $('#emailSuccess').show();
                     $('#emailError').hide();
                     $('#email').prop('readonly', true);
                     $('#checkEmailBtn').prop('disabled', true);
+                    emailVerified = true;
                 }
             },
             error: function() {
                 alert("이메일 중복 확인 중 오류가 발생했습니다.");
+                emailVerified = false;
             }
         });
     }
